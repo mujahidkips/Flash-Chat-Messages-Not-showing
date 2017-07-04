@@ -1,4 +1,4 @@
-package com.londonappbrewery.flashchatnewfirebase;
+package com.mujahid.flashchatnewfirebase;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -14,13 +14,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class LoginActivity extends AppCompatActivity {
 
     // TODO: Add member variables here:
     // UI references.
+    private FirebaseAuth mAuth;
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
 
@@ -45,33 +49,71 @@ public class LoginActivity extends AppCompatActivity {
 
         // TODO: Grab an instance of FirebaseAuth
 
+        mAuth = FirebaseAuth.getInstance();
+
     }
 
     // Executed when Sign in button pressed
-    public void signInExistingUser(View v)   {
+    public void signInExistingUser(View v) {
         // TODO: Call attemptLogin() here
+       attemptLogin();
+       attemptLogin();
 
     }
 
     // Executed when Register button pressed
     public void registerNewUser(View v) {
-        Intent intent = new Intent(this, com.londonappbrewery.flashchatnewfirebase.RegisterActivity.class);
+        Intent intent = new Intent(this, com.mujahid.flashchatnewfirebase.RegisterActivity.class);
         finish();
         startActivity(intent);
     }
 
     // TODO: Complete the attemptLogin() method
     private void attemptLogin() {
+        String email = mEmailView.getText().toString();
+        String password = mPasswordView.getText().toString();
 
-
+if(email.isEmpty() || password.isEmpty()){
+    
+    return;
+}else{
+    Toast.makeText(this, "Login in progress......", Toast.LENGTH_SHORT).show();
+}
         // TODO: Use FirebaseAuth to sign in with email & password
+mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+    @Override
+    public void onComplete(@NonNull Task<AuthResult> task) {
+   Log.e("Sign in","is" + task.isSuccessful());
+    if(!task.isSuccessful()){
+        Log.e("Sign in","problem" +task.getException());
+        showErrorMessage("There is a problem in Sign");
 
 
+    }else{
+        Intent intent=new Intent(LoginActivity.this,MainChatActivity.class);
+        finish();
+        startActivity(intent);
+
+    }
+
+
+    }
+});
 
     }
 
     // TODO: Show error on screen with an alert dialog
 
+    private void showErrorMessage(String message){
+       new AlertDialog.Builder(LoginActivity.this).
+               setTitle("opps").
+               setMessage(message).
+               setIcon(R.drawable.l).
+               setPositiveButton(android.R.string.ok,null).show();
+
+
+
+    }
 
 
 }

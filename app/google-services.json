@@ -1,0 +1,42 @@
+ {
+  "project_info": {
+    "project_number": "648274321553",
+    "firebase_url": "https://randomchat-4433d.firebaseio.com",
+    "project_id": "randomchat-4433d",
+    "storage_bucket": "randomchat-4433d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648274321553:android:9918349848548ee2",
+        "android_client_info": {
+          "package_name": "com.mujahid.flashchatnewfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648274321553-tg6466ah8779oteu0u3o7rva9cchsem2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6CHSlkCk5eor6_Zf0WT2Xib3b6LExz3s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
